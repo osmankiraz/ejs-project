@@ -2,8 +2,12 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const ejs = require("ejs");
+const expressLayouts = require("express-ejs-layouts");
 
 app.set("view engine", "ejs");
+app.set("views", path.resolve(__dirname, "yeni_default_view"));
+
+app.use(expressLayouts);
 
 app.get("/", (req, res) => {
   // res.sendFile(path.resolve(__dirname,'index.html'))
@@ -15,8 +19,8 @@ app.get("/", (req, res) => {
     { name: "osman4", id: 4 },
   ];
   const dersAdi = "nodeJS";
-  const h1tag="<h1>bu bir h1 tagıdır</h1>"
-  res.render("index", { kisiler: personArray, ders: dersAdi ,h1tag});
+  const h1tag = "<h1>bu bir h1 tagıdır</h1>";
+  res.render("index", { kisiler: personArray, ders: dersAdi, h1tag });
 });
 
 app.listen(3000, () => {
